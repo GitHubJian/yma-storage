@@ -1,0 +1,10 @@
+{
+    "name": "yma-storage",
+    "version": "1.0.0",
+    "description": "类似 VueX 的 Storage 存储",
+    "main": "./src/index.js",
+    "scripts": {},
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
