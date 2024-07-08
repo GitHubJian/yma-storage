@@ -6,5 +6,8 @@
     "scripts": {},
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "fs-extra": "10.1.0"
+    }
 }

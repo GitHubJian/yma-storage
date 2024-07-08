@@ -2,6 +2,12 @@
 
 类似 VueX 的 Storage 存储
 
+## Install
+
+```sh
+npm install yma-storage
+```
+
 ## Usage
 
 ```js

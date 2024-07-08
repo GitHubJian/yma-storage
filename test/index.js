@@ -4,7 +4,7 @@ const storage = new createStorage({
     namespace: 'wps',
     force: true,
     state: {
-        count: 1,
+        count: 2,
     },
     getters: {
         todo(state) {

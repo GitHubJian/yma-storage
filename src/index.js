@@ -1,4 +1,5 @@
-const localstorage = require('./adapter/localstorage');
+const browser = require('./adapter/browser');
+const node = require('./adapter/node');
 
 function isPlainObject(obj) {
     return Object.prototype.toString.call(obj) === '[object Object]';
@@ -81,17 +82,20 @@ function registerActions(storage, actions) {
     });
 }
 
-function Storage(options, adapter) {
+function Storage(options) {
     const that = this;
 
     this._committing = false;
     this.namespace = options.namespace;
     // 适配器
-    this.adapter = adapter || localstorage;
+    this.adapter = typeof window !== 'undefined' ? browser : node;
 
     // 初始化 state
     if (options.force) {
         initState(this, options.state);
+    } else {
+        // 触发 state 的 getter
+        this.state;
     }
 
     // 绑定 storage 对象
@@ -112,12 +116,12 @@ Object.defineProperty(Storage.prototype, 'state', {
     get() {
         const ns = encodeURIComponent(this.namespace);
 
-        return JSON.parse(this.adapter.get(ns));
+        return this.adapter.get(ns);
     },
     set(val) {
         const ns = encodeURIComponent(this.namespace);
 
-        return this.adapter.set(ns, JSON.stringify(val));
+        return this.adapter.set(ns, val);
     },
 });
 
